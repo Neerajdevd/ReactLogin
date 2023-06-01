@@ -11,7 +11,7 @@ const Loginform = () => {
     const [emailerror, setEmailError] = useState(false);
     const [passerror, setPassError] = useState(false);
     const emailregex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const passregex=/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/;
+    const passregex=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
     const handleEmail = (e) => {
         let email = e.target.value;
@@ -27,7 +27,7 @@ const Loginform = () => {
 
     const handlePassword = (e) => {
         let password = e.target.value;
-        if (password.match(passregex)) {
+        if (!password.match(passregex)) {
             setPassError(true);
         }
         else {
@@ -45,8 +45,9 @@ const Loginform = () => {
         else {
             setEmailError(false);
         }
+        
         let password = e.target[1].value;
-        if (password.match(passregex)) {
+        if (!password.match(passregex)) {
             setPassError(true);
         }
         else {
